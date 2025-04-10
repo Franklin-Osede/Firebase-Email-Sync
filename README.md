@@ -1,65 +1,70 @@
-##Firebase Email Update
+Firebase Email Update
 This project contains a script that updates a user's email address in both Firebase Authentication and Firestore.
 
-##Introduction
-This script facilitates the process of updating a user's email address. It not only updates the email in Firebase Authentication but also finds and updates the corresponding email in all documents within the users collection in Firestore. This ensures that both the authentication data and the user data stored in Firestore remain consistent after the update.
+Introduction
+This script is designed to facilitate the process of changing a user's email address. It performs the update in two key places:
 
-##Prerequisites
-Before running the script, make sure you have the following:
+Firebase Authentication: Updates the email used for user authentication.
 
-Node.js Installed: Ensure you have Node.js installed on your machine.
+Firestore: Updates the email in all documents of the users collection that contain the old email.
 
-Firebase Account and Project: You must have a Firebase account and a configured project.
+Prerequisites
+Before you start, ensure you have:
 
-Firebase Admin SDK Service Account File: Download the Firebase Admin SDK service account key file.
+Node.js installed
 
-##Setup and Usage Instructions
+An active Firebase account and project
+
+The Firebase Admin SDK Service Account credentials file
+
+Usage Instructions
 1. Install Dependencies
-Install the required npm package using the following command:
+Run the following command to install the required dependency:
 
 bash
 Copy
 npm install firebase-admin
 2. Configure the serviceAccountKey.json File
-Obtain the private key file for your Firebase project:
+Download your Firebase project's private key:
 
-Go to the Firebase Console > Project Settings > Service Accounts.
+Go to the Firebase Console > Project Settings > Service Accounts
 
-Click on "Generate New Private Key".
+Click on "Generate new private key"
 
-Save the downloaded JSON file as serviceAccountKey.json in your project directory.
+Save the downloaded JSON file as serviceAccountKey.json in your project directory
 
-Alternatively, you can embed the credentials directly into your code, similar to the example provided.
+Alternatively, you may directly embed the credentials into your code as shown in the example script.
 
 3. Configure the Email Addresses
-Open the update-email.js script and set the following:
+Edit the update-email.js script to set:
 
-Old Email: The current email of the user (oldEmail).
+The old email (oldEmail)
 
-New Email: The email you want to update to (newEmail).
+The new email (newEmail)
 
-(Optional) Set emailVerified: true if you want the new email to be marked as verified automatically, bypassing the need for further verification.
+Optionally, set emailVerified: true if you want to bypass the verification process
 
 4. Run the Script
-Execute the script using Node.js:
+Execute the script using the following command:
 
 bash
 Copy
 node update-email.js
-How the Script Works
-The update-email.js script performs the following tasks:
+Script Details
+The update-email.js script performs two major operations:
 
-Update in Firebase Authentication: It updates the user's email address in Firebase Authentication.
+Updates the user's email in Firebase Authentication
 
-Update in Firestore: It searches the users collection for any documents containing the old email and updates them to the new email.
+Updates the user's email in all relevant documents in the users Firestore collection
 
-Expected Results
-Once the script is executed:
+Outcome
+After running the script:
 
-The user will be able to log in with the new email using the same password.
+The user can log in with the new email while retaining the same password.
 
-The old email will no longer be valid for logging in.
+The old email will no longer be valid for login.
 
-The new email’s verification status can be preset (typically, it is set as verified).
+The new email can optionally be marked as verified.
 
-All associated user documents and data in Firestore remain intact and consistent.
+All user-related data and documents remain intact.
+
