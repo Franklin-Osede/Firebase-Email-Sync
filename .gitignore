@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Archivo de credenciales de Firebase (¡nunca subir al repositorio!)
+serviceAccountKey.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Directorios de entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Otros
+.DS_Store
+.vscode/ 

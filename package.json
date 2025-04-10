@@ -1,0 +1,12 @@
+{
+  "name": "firebase-email-update",
+  "version": "1.0.0",
+  "description": "Script para actualizar el email de un usuario en Firebase",
+  "main": "update-email.js",
+  "scripts": {
+    "start": "node update-email.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.11.1"
+  }
+}
