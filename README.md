@@ -1,54 +1,65 @@
-# Actualización de Email en Firebase
+##Firebase Email Update
+This project contains a script that updates a user's email address in both Firebase Authentication and Firestore.
 
-Este proyecto contiene un script para actualizar el email de un usuario en Firebase Authentication y Firestore.
+##Introduction
+This script facilitates the process of updating a user's email address. It not only updates the email in Firebase Authentication but also finds and updates the corresponding email in all documents within the users collection in Firestore. This ensures that both the authentication data and the user data stored in Firestore remain consistent after the update.
 
-## Requisitos previos
+##Prerequisites
+Before running the script, make sure you have the following:
 
-1. Node.js instalado
-2. Cuenta y proyecto en Firebase
-3. Archivo de credenciales de servicio de Firebase Admin SDK
+Node.js Installed: Ensure you have Node.js installed on your machine.
 
-## Instrucciones de uso
+Firebase Account and Project: You must have a Firebase account and a configured project.
 
-### 1. Instalar dependencias
+Firebase Admin SDK Service Account File: Download the Firebase Admin SDK service account key file.
 
-```bash
+##Setup and Usage Instructions
+1. Install Dependencies
+Install the required npm package using the following command:
+
+bash
+Copy
 npm install firebase-admin
-```
+2. Configure the serviceAccountKey.json File
+Obtain the private key file for your Firebase project:
 
-### 2. Configurar el archivo serviceAccountKey.json
+Go to the Firebase Console > Project Settings > Service Accounts.
 
-Descarga el archivo de claves privadas de tu proyecto Firebase:
-- Ve a la Consola de Firebase > Configuración del proyecto > Cuentas de servicio
-- Haz clic en "Generar nueva clave privada"
-- Guarda el archivo JSON descargado como `serviceAccountKey.json` en el directorio del proyecto
+Click on "Generate New Private Key".
 
-Alternativamente, puedes incluir las credenciales directamente en el código como se muestra en el script de ejemplo.
+Save the downloaded JSON file as serviceAccountKey.json in your project directory.
 
-### 3. Configurar los emails
+Alternatively, you can embed the credentials directly into your code, similar to the example provided.
 
-Edita el script `update-email.js` para configurar:
-- El email antiguo (`oldEmail`)
-- El email nuevo (`newEmail`)
-- Opcionalmente, puedes establecer `emailVerified: true` para que no se requiera verificación
+3. Configure the Email Addresses
+Open the update-email.js script and set the following:
 
-### 4. Ejecutar el script
+Old Email: The current email of the user (oldEmail).
 
-```bash
+New Email: The email you want to update to (newEmail).
+
+(Optional) Set emailVerified: true if you want the new email to be marked as verified automatically, bypassing the need for further verification.
+
+4. Run the Script
+Execute the script using Node.js:
+
+bash
+Copy
 node update-email.js
-```
+How the Script Works
+The update-email.js script performs the following tasks:
 
-## Detalles del script
+Update in Firebase Authentication: It updates the user's email address in Firebase Authentication.
 
-El script `update-email.js` realiza dos operaciones principales:
+Update in Firestore: It searches the users collection for any documents containing the old email and updates them to the new email.
 
-1. Actualiza el email del usuario en Firebase Authentication
-2. Actualiza el email en todos los documentos de la colección 'users' que contengan el email antiguo
+Expected Results
+Once the script is executed:
 
-## Resultado
+The user will be able to log in with the new email using the same password.
 
-Después de ejecutar el script:
-- El usuario podrá iniciar sesión con el nuevo email usando la misma contraseña
-- El email antiguo ya no será válido para iniciar sesión
-- La verificación del nuevo email puede ser configurada (por defecto puede establecerse como ya verificado)
-- Todos los datos y documentos asociados al usuario se mantienen intactos 
+The old email will no longer be valid for logging in.
+
+The new email’s verification status can be preset (typically, it is set as verified).
+
+All associated user documents and data in Firestore remain intact and consistent.
